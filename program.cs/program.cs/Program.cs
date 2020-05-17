@@ -8,9 +8,27 @@ namespace program.cs
     {
         public static void Main(String[] args)
         {
-            Board test = new Board();
-            test.InitializeBoard();
-            test.PrintBoard();
+            Board board = new Board();
+            Console.WriteLine(board.FormatBoard());
+
+            TakeTurn newTurn = new TakeTurn();
+            newTurn.DoTurn();
+
+            int tokenRow = -1;
+            int tokenColumn = -1;
+            do
+            {
+                Console.WriteLine("What row?");
+                tokenRow = Int32.Parse(Console.ReadLine());
+
+                Console.WriteLine("What Column?");
+                tokenColumn = Int32.Parse(Console.ReadLine());
+            } while (tokenRow < 0 || tokenRow > 2 || tokenColumn < 0 || tokenColumn > 2);
+
+            board.UpdateBoard(tokenRow, tokenColumn, Token.X);
+
+            Console.WriteLine(board.FormatBoard());
+
             /* var player1 = CreateLosers(Token.X);
              var player2 = CreateLosers(Token.O);
 

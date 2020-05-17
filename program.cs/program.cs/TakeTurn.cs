@@ -8,7 +8,6 @@ namespace program.cs
 {
     public class TakeTurn
     {
-        public TokenTracker TokenTracker { get; set; }
         public int X { get; set; }
         public int O { get; set; }
         public TakeTurn()

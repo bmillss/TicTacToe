@@ -7,33 +7,61 @@ namespace program.cs
 {
     public class Board
     {
+        private Token[,] _boardArray = new Token[3, 3];
 
-        Token[,] boardarray = new Token[3, 3];
-
-        public string InitializeBoard()
+        // Constructor
+        public Board()
         {
-            for (int i = 0; i < boardarray.GetLength(0); i++)
-            {
-                for (int j = 0; j < boardarray.GetLength(1); j++)
-                {
-                    boardarray[i, j] = Token.Blank;
-                }
-            }
-            return string.Empty;
+            InitializeBoard();
         }
-        public void PrintBoard()
+        
+        private void InitializeBoard()
         {
-            for (int i = 0; i < boardarray.GetLength(0); i++)
+            for (int row = 0; row < _boardArray.GetLength(0); row++)
             {
-                for (int j = 0; j < boardarray.GetLength(1); j++)
+                for (int column = 0; column < _boardArray.GetLength(1); column++)
                 {
-                    Console.Write(boardarray[i, j] + "\t");
+                    _boardArray[row, column] = Token.Blank;
                 }
-                Console.WriteLine("\n");
+            }
+        }
+
+        public string FormatBoard()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int row = 0; row < _boardArray.GetLength(0); row++)
+            {
+                for (int column = 0; column < _boardArray.GetLength(1); column++)
+                {
+                    sb.Append(_boardArray[row, column] + "\t");
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+        
+        public void UpdateBoard(int row, int column, Token token) // int row, int column, Token token
+        {
+            _boardArray[row, column] = token;
+            // What's the row?
+            // Get the row from the user
+            // What's the column?
+            // Get the column from the user
+           //switch(tokenPlacement.)
+            {
+                //case "TL":
+
             }
 
+        }
+        
+        public void Validateboard(int i, int j)
+        {
+            if (i >= 3 || j >= 3) throw new ArgumentException();
         }
     }
 }
-    
+    //TODO: write logic to check if someone has won, tip: 3 diff ways they can win all in row/column/diagonally write a method for each perhaps 
+    //do it hardcoded first then challenge to do it with loops only 
+    //wincondition check if symbol shows up all in a row/column/diag after this model how turn goes would be next step
 
