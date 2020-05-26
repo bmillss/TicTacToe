@@ -2,7 +2,7 @@
 
 public class Checkwin
 {
-	public bool Checkwin()
+	/*public bool Checkwin()
 	{
 
 
@@ -14,6 +14,6 @@ public class Checkwin
         {
 			HasWon = false;
 			if (Board[CheckRow, 0] != "");
-        }*/
-	}
+        }
+	}*/
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace program.cs
+namespace tiktaktoe
 {
     public class Player
     {

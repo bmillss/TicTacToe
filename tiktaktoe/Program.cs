@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace program.cs
+namespace tiktaktoe
 {
     public static class Program
     {
         public static void Main(String[] args)
         {
             Board board = new Board();
-            Console.WriteLine(board.FormatBoard());
+            /*Console.WriteLine(board.FormatBoard());
 
             TakeTurn newTurn = new TakeTurn();
             newTurn.DoTurn();
-
-            int tokenRow = -1;
+            */
+            /*int tokenRow = -1;
             int tokenColumn = -1;
             do
             {
@@ -24,8 +24,11 @@ namespace program.cs
                 Console.WriteLine("What Column?");
                 tokenColumn = Int32.Parse(Console.ReadLine());
             } while (tokenRow < 0 || tokenRow > 2 || tokenColumn < 0 || tokenColumn > 2);
-
-            board.UpdateBoard(tokenRow, tokenColumn, Token.X);
+            */
+            board.UpdateBoard(0, 0, Token.X);
+            board.UpdateBoard(1, 1, Token.X);
+            board.UpdateBoard(2, 2, Token.X);
+            Console.WriteLine(board.HasWonDiagonal());
 
             Console.WriteLine(board.FormatBoard());
 

@@ -2,14 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using tiktaktoe;
 
-namespace program.cs.TikTakTests
+namespace TikTakTests
 {
     [TestClass]
     public class WhenCreatingABoard
     {
         [TestMethod]
-        public void AndPlayerIsMadeThenBoardShouldBeBlank()
+        public void AndPlayerHasWonDiagonalItShouldWinAfterOneWay()
         {
             //arrange
             var player = new Player();

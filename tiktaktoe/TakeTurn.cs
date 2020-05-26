@@ -1,10 +1,7 @@
-﻿using program;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 
-namespace program.cs
+namespace tiktaktoe
 {
     public class TakeTurn
     {

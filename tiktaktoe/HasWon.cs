@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace program.cs
+namespace tiktaktoe
 {
-    public enum Token
+    class HasWon
     {
-        Blank,
-        X,
-        O,
     }
 }
