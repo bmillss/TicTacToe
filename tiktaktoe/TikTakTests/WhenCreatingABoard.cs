@@ -10,14 +10,56 @@ namespace TikTakTests
     public class WhenCreatingABoard
     {
         [TestMethod]
-        public void AndPlayerHasWonDiagonalItShouldWinAfterOneWay()
+        public void WhenCheckingThatABoardHasThreeInAColumn()
         {
             //arrange
-            var player = new Player();
+            Board board = new Board();
+            board.UpdateBoard(0, 0, Token.X);
+            board.UpdateBoard(0, 1, Token.X);
+            board.UpdateBoard(0, 2, Token.X);
             //act
             //assert
-        }
+            Assert.IsTrue(board.HasWon());
 
-        
+        }
+        [TestMethod]
+        public void WhenCheckingThatABoardHasThreeInARow()
+        {
+            //arrange
+            Board board = new Board();
+            board.UpdateBoard(0, 0, Token.X);
+            board.UpdateBoard(1, 0, Token.X);
+            board.UpdateBoard(2, 0, Token.X);
+            //act
+            //assert
+            Assert.IsTrue(board.HasWon());
+
+        }
+        [TestMethod]
+        public void WhenCheckingThatABoardHasThreeAcross()
+        {
+            //arrange
+            Board board = new Board();
+            board.UpdateBoard(0, 0, Token.X);
+            board.UpdateBoard(1, 1, Token.X);
+            board.UpdateBoard(2, 2, Token.X);
+            //act
+            //assert
+            Assert.IsTrue(board.HasWon());
+
+        }
+        [TestMethod]
+        public void WhenCheckingThatABoardHasThreeAcross2()
+        {
+            //arrange
+            Board board = new Board();
+            board.UpdateBoard(2, 2, Token.X);
+            board.UpdateBoard(1, 1, Token.X);
+            board.UpdateBoard(0, 0, Token.X);
+            //act
+            //assert
+            Assert.IsTrue(board.HasWon());
+
+        }
     }
 }
