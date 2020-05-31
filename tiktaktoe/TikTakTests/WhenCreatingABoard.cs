@@ -53,13 +53,21 @@ namespace TikTakTests
         {
             //arrange
             Board board = new Board();
-            board.UpdateBoard(2, 2, Token.X);
+            board.UpdateBoard(0, 2, Token.X);
             board.UpdateBoard(1, 1, Token.X);
-            board.UpdateBoard(0, 0, Token.X);
+            board.UpdateBoard(2, 0, Token.X);
             //act
             //assert
             Assert.IsTrue(board.HasWon());
 
         }
+        [DataTestMethod]
+        [DataRow(Token.X, DisplayName = "WhenCheckingThatABoardHasThreeAcross")]
+        public void HasWonShouldBeTrue(Token initial,Token final)
+        {
+            var board = new Board { };
+            board.HasWon();
+        }
+        
     }
 }
