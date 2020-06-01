@@ -53,10 +53,7 @@ namespace tiktaktoe
         //all below needs to go in its own class most likely
         public bool HasWon()
         {
-            HasWonDiagonal();
-            HasWonColumn();
-            HasWonRoW();
-            return false;
+            return HasWonDiagonal() || HasWonColumn() || HasWonRoW();
         }
         public bool HasWonDiagonal()
         {
