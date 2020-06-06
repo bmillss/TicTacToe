@@ -51,54 +51,44 @@ namespace tiktaktoe
         }
 
         //all below needs to go in its own class most likely
-        public bool HasWon()
+        public bool HasWon() // is game over (is board filled?)
         {
-            return HasWonDiagonal() || HasWonColumn() || HasWonRoW();
+            return HasWon(Token.X) || HasWon(Token.O); 
         }
-        public bool HasWonDiagonal()
+
+        public bool HasWon(Token token)
         {
-            //for (int row = 0; row < _boardArray.GetLength(0); row++)
-            //{
-            if ((_boardArray[0, 0] == Token.X && _boardArray[1, 1] == Token.X && _boardArray[2, 2] == Token.X) ||
-                (_boardArray[0, 0] == Token.O && _boardArray[1, 1] == Token.O && _boardArray[2, 2] == Token.O))
+            return HasWonDiagonal(token) || HasWonColumn(token) || HasWonRow(token);
+        }
+
+        public bool HasWonDiagonal(Token token)
+        {
+            if (_boardArray[0, 0] == token && _boardArray[1, 1] == token && _boardArray[2, 2] == token) 
             {
                 return true;
             }
-            //}
-            //for (int row = _boardArray.GetLength(0); row > 0; row--)
-            //{
-            if ((_boardArray[0, 2] == Token.X && _boardArray[1, 1] == Token.X && _boardArray[2, 0] == Token.X) ||
-                (_boardArray[0, 2] == Token.O && _boardArray[1, 1] == Token.O && _boardArray[2, 0] == Token.O))
+            if (_boardArray[0, 2] == token && _boardArray[1, 1] == token && _boardArray[2, 0] == token)
             {
                 return true;
             }
-
-
-
-            //}
-
             return false;
-
         }
-        public bool HasWonRoW()
+        public bool HasWonRow(Token token)
         {
             for (int row = 0; row < _boardArray.GetLength(0); row++)
             {
-
-                if ((_boardArray[row, 0] == Token.X && _boardArray[row, 1] == Token.X && _boardArray[row, 2] == Token.X) ||
-                    (_boardArray[row, 0] == Token.O && _boardArray[row, 1] == Token.O && _boardArray[row, 2] == Token.O))
+                if (_boardArray[row, 0] == token && _boardArray[row, 1] == token && _boardArray[row, 2] == token)
                 {
                     return true;
                 }
             }
             return false;
         }
-        public bool HasWonColumn()
+        public bool HasWonColumn(Token token)
         {
             for (int column = 0; column < _boardArray.GetLength(1); column++)
             {
-                if ((_boardArray[0, column] == Token.X && _boardArray[1, column] == Token.X && _boardArray[2, column] == Token.X) ||
-                            (_boardArray[0, column] == Token.O && _boardArray[1, column] == Token.O && _boardArray[2, column] == Token.O))
+                if (_boardArray[0, column] == token && _boardArray[1, column] == token && _boardArray[2, column] == token)
 
                     return true;
             }

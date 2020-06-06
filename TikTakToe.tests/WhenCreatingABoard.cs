@@ -54,20 +54,21 @@ namespace TikTakTests
             //arrange
             Board board = new Board();
             board.UpdateBoard(0, 2, Token.X);
-            board.UpdateBoard(1, 1, Token.X);
+            board.UpdateBoard(0, 0, Token.X);
             board.UpdateBoard(2, 0, Token.X);
             //act
             //assert
-            Assert.IsTrue(board.HasWon());
+            Assert.IsFalse(board.HasWon());
 
         }
-        [DataTestMethod]
+        /*[DataTestMethod]
         [DataRow(Token.X, DisplayName = "WhenCheckingThatABoardHasThreeAcross")]
         public void HasWonShouldBeTrue(Token initial,Token final)
         {
             var board = new Board { };
             board.HasWon();
-        }
-        
-    }
+        }*/
+
+    }//TODO: player taking turns interaction X takes turn then O then x then O etc, also make sure X's cannot be replaced by O's
+
 }
