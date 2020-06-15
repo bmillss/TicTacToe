@@ -7,7 +7,7 @@ namespace tiktaktoe
 {
     public class Board
     {
-        public Token[,] _boardArray = new Token[3, 3];
+        private Token[,] _boardArray = new Token[3, 3];
 
         // Constructor
         public Board()
@@ -40,22 +40,54 @@ namespace tiktaktoe
             return sb.ToString();
         }
 
-        public void UpdateBoard(int row, int column, Token token) // int row, int column, tokend
+        public bool UpdateBoard(int row, int column, Token token) // int row, int column, tokend
         {
-            _boardArray[row, column] = token;
+            if (_boardArray[row, column] == Token.Blank) 
+            {
+                _boardArray[row, column] = token;
+                return true;
+            }
+                return false;
         }
         
-        public void Validateboard(int i, int j)
+        /*
+            if (condition)
+                return true;
+            else
+                return false;
+
+            return condition;
+        */
+        public bool Validateboard(int i, int j)
         {
-            if (i >= 3 || j >= 3) throw new ArgumentException();
+            return (i < 3 && i > -1 && j < 3 && j > -1);
         }
 
         //all below needs to go in its own class most likely
         public bool HasWon() // is game over (is board filled?)
         {
-            return HasWon(Token.X) || HasWon(Token.O); 
+            return HasWon(Token.X) || HasWon(Token.O) || IsTied();
         }
-
+        public bool IsTied()
+        {
+            if (HasWon(Token.X)) return false;
+            if (HasWon(Token.O)) return false;
+            else
+            {
+                for (int row = 0; row < _boardArray.GetLength(0); row++)
+                {
+                    for (int column = 0; column < _boardArray.GetLength(1); column++)
+                    {
+                        if (_boardArray[row, column] == Token.Blank)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+            //TODO: finish double loop for tied, and right logic to be able to tell who won or if game tied (just call istied())
+        }
         public bool HasWon(Token token)
         {
             return HasWonDiagonal(token) || HasWonColumn(token) || HasWonRow(token);
