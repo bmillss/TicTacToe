@@ -88,6 +88,7 @@ namespace tiktaktoe
             return true;
             //TODO: finish double loop for tied, and right logic to be able to tell who won or if game tied (just call istied())
         }
+        
         public bool HasWon(Token token)
         {
             return HasWonDiagonal(token) || HasWonColumn(token) || HasWonRow(token);
@@ -127,10 +128,6 @@ namespace tiktaktoe
 
             return false;
         }
-
-        //TODO:  unit testing and create just a "HasWon check instead of each individual one" "assert is true has 1 diagonal" use mars rover examples for tests have a few unit tests (test methods)
-        //once test suite is in place (Test on diagonal/row/column) Refactor these methods to work for a board of any size easiest ones will be row/column depending on how you implement them
-        // dont feel bad if you end up needing to use a double nested for loop for each (dont have to use them)
         
     }
 }

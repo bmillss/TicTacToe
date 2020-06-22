@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "tiktaktoe": {
+      "commandName": "Project",
+      "commandLineArgs": "XWins"
+    }
+  }
+}

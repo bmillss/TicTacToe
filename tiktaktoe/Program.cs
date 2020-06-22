@@ -6,15 +6,35 @@ namespace tiktaktoe
 {
     public static class Program
     {
+        private struct TokenPlacement
+        {
+            public int Row{get; set;}
+            public int Column {get; set;}
+        }
+
+        private static List<TokenPlacement> XWins = new List<TokenPlacement>
+        {
+            new TokenPlacement{Row=0, Column=0}, // Upper Left
+            new TokenPlacement{Row=0, Column=2}, // Upper Right
+            new TokenPlacement{Row=1, Column=1}, // Center
+            new TokenPlacement{Row=1, Column=2}, // Middle Right
+            new TokenPlacement{Row=2, Column=2} // Bottom Right
+        };
+        //you dont get UI stuff on unit tests
+        //think of a small project that you want to tackle
+        //TODO: input validation for if anything iso utside parameter of array, add some other strategies as in O wins or theres a tie (we already have x wins (line15)
         public static void Main(string[] args)
         {
+            Console.WriteLine("Hello, " + String.Join(" and ", args));
+            bool autoMode = false;
+            List<TokenPlacement> strategy = new List<TokenPlacement>();
+            if (args.Length==1 && args[0] == "XWins")
+            {
+                autoMode = true;
+                strategy = XWins;
+                Console.WriteLine("In automatic mode, playing as XWins");
+            }
             Board board = new Board();
-            /* board.UpdateBoard(0, 0, Token.X);
-             board.UpdateBoard(1, 1, Token.X);
-             board.UpdateBoard(2, 2, Token.X);
-             Console.WriteLine(board.HasWonDiagonal(Token.X));
-             */
-            //Console.WriteLine(board.FormatBoard());
 
             Console.WriteLine("Player1: X, Player2: O");
             int turncount = 0;
@@ -33,11 +53,20 @@ namespace tiktaktoe
                 bool isPlayerValid = false;
                 while (isPlayerValid != true)
                 {
-                    Console.WriteLine("Player " + currentToken + " please input your placement for row");
-                    int PlayerRow = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Player " + currentToken + " please input your placement for Column");
-                    int PlayerColumn = int.Parse(Console.ReadLine());
-                    isPlayerValid = board.UpdateBoard(PlayerRow, PlayerColumn, currentToken);
+                    int playerRow;
+                    int playerColumn;
+                    if (!autoMode)
+                    {
+                        Console.WriteLine("Player " + currentToken + " please input your placement for row");
+                        playerRow = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Player " + currentToken + " please input your placement for Column");
+                        playerColumn = int.Parse(Console.ReadLine());
+                    }
+                    else {
+                        playerRow = strategy[turncount].Row;
+                        playerColumn = strategy[turncount].Column;
+                    }
+                    isPlayerValid = board.UpdateBoard(playerRow, playerColumn, currentToken);
                     if (!isPlayerValid)
                     {
                         Console.WriteLine("\nI am sorry this spot is already taken choose another!");
@@ -45,17 +74,20 @@ namespace tiktaktoe
                 }
 
                 turncount++;
-            } while (board.HasWon() != true);
-
-            // Here's what I'd do
-            // - Create two players, one for X, one for O
-            // - Create a roundKeeper variable that keeps track of who's turn it is
-            // - While the game is not won
-            //   - Current player picks a spot
-            //   - Board updates to reflect the choice
-            //   - Next player becomes Current Player
+            } while (!board.HasWon() && !board.IsTied());
+            Console.WriteLine(board.FormatBoard());
+            if (board.IsTied())
+            {
+                Console.WriteLine("Game is tied!");
+            }
+            else if (board.HasWon(Token.X))
+            {
+                Console.Write("Congratulations Player X you have won!\n");
+            }
+            else if (board.HasWon(Token.O))
+            {
+                Console.Write("Congratulations Player O you have won!\n");
+            }
         }
     }
 }
-//treat as scratch pad, pick a space and print whats in that space
-//could create new type class called game and has 2 player as fields and board as field and console app just asks game who current player is (this if refactored dont do)
