@@ -20,6 +20,20 @@ namespace tiktaktoe
             new TokenPlacement{Row=1, Column=2}, // Middle Right
             new TokenPlacement{Row=2, Column=2} // Bottom Right
         };
+        private static List<TokenPlacement> OWins = new List<TokenPlacement>
+        {
+            new TokenPlacement{Row=0, Column=0}, // Upper Left
+            new TokenPlacement{Row=1, Column=0}, // Middle Left
+            new TokenPlacement{Row=2, Column=1}, // Bottom Left
+        };
+        private static List<TokenPlacement> itsATie = new List<TokenPlacement>
+        {
+            new TokenPlacement{Row=0, Column=0}, // Upper Left
+            new TokenPlacement{Row=0, Column=2}, // Upper Right
+            new TokenPlacement{Row=1, Column=1}, // Center
+            new TokenPlacement{Row=1, Column=2}, // Middle Right
+            new TokenPlacement{Row=2, Column=2} // Bottom Right
+        };
         //you dont get UI stuff on unit tests
         //think of a small project that you want to tackle
         //TODO: input validation for if anything iso utside parameter of array, add some other strategies as in O wins or theres a tie (we already have x wins (line15)
@@ -59,8 +73,16 @@ namespace tiktaktoe
                     {
                         Console.WriteLine("Player " + currentToken + " please input your placement for row");
                         playerRow = int.Parse(Console.ReadLine());
+                        if (playerRow < 0 && playerRow > 2)
+                        {
+                            Console.WriteLine("This is outside of bounds please input a number between 0 and 2");
+                        }
                         Console.WriteLine("Player " + currentToken + " please input your placement for Column");
                         playerColumn = int.Parse(Console.ReadLine());
+                        if (playerColumn < 0 && playerColumn > 2 )
+                        {
+                            Console.WriteLine("This is outside of bounds please input a number between 0 and 2");
+                        }
                     }
                     else {
                         playerRow = strategy[turncount].Row;
