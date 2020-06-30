@@ -71,18 +71,24 @@ namespace tiktaktoe
                     int playerColumn;
                     if (!autoMode)
                     {
-                        Console.WriteLine("Player " + currentToken + " please input your placement for row");
-                        playerRow = int.Parse(Console.ReadLine());
-                        if (playerRow < 0 && playerRow > 2)
+                        do
                         {
-                            Console.WriteLine("This is outside of bounds please input a number between 0 and 2");
-                        }
-                        Console.WriteLine("Player " + currentToken + " please input your placement for Column");
-                        playerColumn = int.Parse(Console.ReadLine());
-                        if (playerColumn < 0 && playerColumn > 2 )
+                            Console.WriteLine("Player " + currentToken + " please input your placement for row");
+                            playerRow = int.Parse(Console.ReadLine());
+                            if (playerRow < 0 || playerRow > 2)
+                            {
+                                Console.WriteLine("This is outside of bounds please input a number between 0 and 2");
+                            }
+                        } while (playerRow < 0 || playerRow > 2);
+                        do
                         {
-                            Console.WriteLine("This is outside of bounds please input a number between 0 and 2");
-                        }
+                            Console.WriteLine("Player " + currentToken + " please input your placement for Column");
+                            playerColumn = int.Parse(Console.ReadLine());
+                            if (playerColumn < 0 || playerColumn > 2)
+                            {
+                                Console.WriteLine("This is outside of bounds please input a number between 0 and 2");
+                            }
+                        } while (playerColumn < 0 || playerColumn > 2);
                     }
                     else {
                         playerRow = strategy[turncount].Row;
